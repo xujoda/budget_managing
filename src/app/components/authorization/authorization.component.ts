@@ -19,7 +19,7 @@ export class AuthorizationComponent implements OnInit {
 
   onLogin(login:string, password:string): void{
     if (login === 'admin' || password === 'admin'){
-      this.router.navigate(['dashboard'])
+      this.router.navigate(['/dashboard'])
     }
     else alert('Wrong password')
   }
