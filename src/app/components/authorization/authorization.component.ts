@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgModel } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authorization',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorizationComponent implements OnInit {
 
-  constructor() { }
+  login: string = ''
+  password: string = ''
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  onLogin(login:string, password:string): void{
+    if (login === 'admin' || password === 'admin'){
+      this.router.navigate(['dashboard'])
+    }
+    else alert('Wrong password')
+  }
 }

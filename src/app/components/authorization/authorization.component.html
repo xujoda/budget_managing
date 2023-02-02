@@ -1,1 +1,8 @@
 <p>authorization works!</p>
+
+<form (ngSubmit)="onLogin(login,password)">
+<input [(ngModel)]="login" name="email" type="email" placeholder="ur login" required>
+<input [(ngModel)]="password" name="password" type="password" placeholder="ur password" required>
+<button type="submit">Connect</button>
+</form>
+
