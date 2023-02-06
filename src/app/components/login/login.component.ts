@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authorization',
-  templateUrl: './authorization.component.html',
-  styleUrls: ['./authorization.component.scss']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class AuthorizationComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   login: string = ''
   password: string = ''
@@ -18,9 +18,11 @@ export class AuthorizationComponent implements OnInit {
   }
 
   onLogin(login:string, password:string): void{
-    if (login === 'admin' || password === 'admin'){
-      this.router.navigate(['/dashboard'])
-    }
-    else alert('Wrong password')
+  //   this.authSerive
+
+  //   if (login === 'admin' || password === 'admin'){
+  //     this.router.navigate(['/dashboard'])
+  //   }
+  //   else alert('Wrong password')
   }
 }

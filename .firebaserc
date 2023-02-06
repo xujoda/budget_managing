@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "budget-management-2f326": {
+      "hosting": {
+        "budget_managing": [
+          "budget-management-2f326"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "budget-management-2f326"
+  }
+}
