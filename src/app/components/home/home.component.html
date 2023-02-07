@@ -1,1 +1,22 @@
 <p>home works!</p>
+
+<button mat-raised-button color="primary" routerLink="/login">
+    Login
+</button>
+
+<button mat-raised-button color="primary" routerLink="/dashboard">
+    Dashboard
+</button>
+
+<div *ngIf="(fbAuth.user | async)">
+    User is logged on
+
+    <br>
+    <button mat-raised-button color="primary" (click)="logout()">
+        Log out
+    </button>
+</div>
+
+<div *ngIf="!(fbAuth.user | async)">
+    User is not logged on
+</div>

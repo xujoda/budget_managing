@@ -1,8 +1,28 @@
-<p>authorization works!</p>
+<p>login works!</p>
 
-<form (ngSubmit)="onLogin(login,password)">
-<input [(ngModel)]="login" name="email" type="email" placeholder="ur login" required>
-<input [(ngModel)]="password" name="password" type="password" placeholder="ur password" required>
-<button type="submit">Connect</button>
-</form>
+<button mat-raised-button color="primary" routerLink="/home">
+    Home
+</button>
 
+<mat-card>
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" type="email" matInput placeholder="ur email">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" type="password" matInput placeholder="ur password">
+            </mat-form-field>
+        </p>
+
+        <div *ngIf="firebaseErrorMessage != ''" class="error-style"> 
+            <span>{{ firebaseErrorMessage }}</span>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit">Login</button>
+    </form>
+</mat-card>
