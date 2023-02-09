@@ -9,15 +9,17 @@ import { MonhtlySpendingComponent } from './components/monhtly-spending/monhtly-
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './services/auth.guard';
 
+//TODO: Setting AuthGuard
+
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'daily', component: DailySpendingComponent, canActivate: [AuthGuard]},
-  {path: 'monthly', component: MonhtlySpendingComponent, canActivate: [AuthGuard]},
-  {path: 'balance', component: FullFreeBalanceComponent, canActivate: [AuthGuard]},
-  {path: 'incomes', component: IncomesListComponent, canActivate: [AuthGuard]},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'daily', component: DailySpendingComponent},// canActivate: [AuthGuard]},
+  {path: 'monthly', component: MonhtlySpendingComponent},// canActivate: [AuthGuard]},
+  {path: 'balance', component: FullFreeBalanceComponent},// canActivate: [AuthGuard]},
+  {path: 'incomes', component: IncomesListComponent},// canActivate: [AuthGuard]},
+  {path: 'dashboard', component: DashboardComponent},// canActivate: [AuthGuard]},
   {path: '**', component: HomeComponent},
 ];
 

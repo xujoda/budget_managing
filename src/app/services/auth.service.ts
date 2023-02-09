@@ -30,7 +30,7 @@ export class AuthService {
       console.log('error code: ', error.code)
       console.log('error: ', error)
       if (error.code)
-      return {isValid:false, message: error.message}
+        return {isValid:false, message: error.message}
       return ''
     })
    }

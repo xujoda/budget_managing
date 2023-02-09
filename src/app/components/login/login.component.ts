@@ -31,14 +31,15 @@ export class LoginComponent implements OnInit {
     console.log('loginUser')
     if (this.loginForm.invalid)
       return
-
+//TODO: fix result (return from loginUser() )
     this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).
     then((result => {
-      if (result === null){
+      if (result == null){
         console.log('loggin in...')
         this.router.navigate(['/dashboard'])
       }
-      else if (result.isValid == false){
+      else if (result.isValid === false){
+        alert('wrong password')
         console.log('loggin error: ', result)
         this.firebaseErrorMessage = result.message
       }

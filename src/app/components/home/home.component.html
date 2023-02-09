@@ -8,6 +8,22 @@
     Dashboard
 </button>
 
+<button mat-raised-button color="primary" routerLink="/daily">
+    Daily Spending
+</button>
+
+<button mat-raised-button color="primary" routerLink="/monthly">
+    Monthly Spending
+</button>
+
+<button mat-raised-button color="primary" routerLink="/balance">
+    Free Balance
+</button>
+
+<button mat-raised-button color="primary" routerLink="/incomes">
+    Incomes
+</button>
+
 <div *ngIf="(fbAuth.user | async)">
     User is logged on
 

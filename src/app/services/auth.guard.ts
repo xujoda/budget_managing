@@ -9,6 +9,7 @@ import { Auth } from '@angular/fire/auth';
 export class AuthGuard implements CanActivate {
   constructor(private router: Router, private fbAuth: Auth) {}
 
+//TODO: Setting AuthGuard
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -16,7 +17,7 @@ export class AuthGuard implements CanActivate {
     return new Promise((resolve, reject) => {
       this.fbAuth.onAuthStateChanged((user) => {
         if (user) {
-          resolve(true)
+          resolve(true) //?
         }
         else{
           console.log('Auth Guard: user is not logged in')
