@@ -1,0 +1,33 @@
+<nav>
+
+    <button *ngIf="!(fbAuth.user | async)" mat-raised-button color="primary" routerLink="/login">
+        Login
+    </button>
+
+    <button *ngIf="(fbAuth.user | async)" mat-raised-button color="primary" (click)="logout()">
+        Log out
+    </button>
+
+    <button mat-raised-button color="primary" routerLink="/dashboard">
+        Dashboard
+    </button>
+
+    <button mat-raised-button color="primary" routerLink="/daily">
+        Daily Spending
+    </button>
+
+    <button mat-raised-button color="primary" routerLink="/monthly">
+        Monthly Spending
+    </button>
+
+    <button mat-raised-button color="primary" routerLink="/balance">
+        Free Balance
+    </button>
+
+    <button mat-raised-button color="primary" routerLink="/incomes">
+        Incomes
+    </button>
+
+    
+
+</nav>

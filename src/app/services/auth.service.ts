@@ -27,8 +27,8 @@ export class AuthService {
     })
     .catch(error => {
       console.log('Auth Service: loginUser: login error...')
-      console.log('error code: ', error.code)
-      console.log('error: ', error)
+      // console.log('error code: ', error.code)
+      // console.log('error: ', error)
       if (error.code)
         return {isValid:false, message: error.message}
       return ''

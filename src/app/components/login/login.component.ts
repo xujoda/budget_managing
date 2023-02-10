@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit{
 
   loginForm: FormGroup
   firebaseErrorMessage: string
@@ -24,23 +24,29 @@ export class LoginComponent implements OnInit {
     this.firebaseErrorMessage = ''
   }
 
+  ngAfterViewInit(): void {
+    this.fbAuth.onAuthStateChanged((user) => {
+      if (user){
+        this.router.navigate(['/dashboard'])
+      }
+    })
+  }
+
   ngOnInit(): void {
   }
 
   loginUser(){
-    console.log('loginUser')
     if (this.loginForm.invalid)
       return
 //TODO: fix result (return from loginUser() )
     this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).
     then((result => {
       if (result == null){
-        console.log('loggin in...')
         this.router.navigate(['/dashboard'])
       }
       else if (result.isValid === false){
         alert('wrong password')
-        console.log('loggin error: ', result)
+        // console.log('loggin error: ', result)
         this.firebaseErrorMessage = result.message
       }
     }))

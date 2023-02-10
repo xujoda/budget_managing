@@ -4,11 +4,11 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class NavigationComponent implements OnInit {
 
   constructor(public fbAuth: AngularFireAuth) { }
 
@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   }
 
   logout(): void{
+    console.log('User: Sign out')
     this.fbAuth.signOut();
   }
 }

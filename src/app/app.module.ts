@@ -10,12 +10,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FullFreeBalanceComponent } from './components/full-free-balance/full-free-balance.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './components/home/home.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire/compat/';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import {AuthGuardModule} from '@angular/fire/auth-guard'
+// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 // import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
 // import { provideAuth,getAuth } from '@angular/fire/auth';
 // import { provideDatabase,getDatabase } from '@angular/fire/database';
@@ -40,10 +41,11 @@ import { MatButtonModule } from '@angular/material/button'
     DashboardComponent,
     LoginComponent,
     FullFreeBalanceComponent,
-    HomeComponent
+    NavigationComponent
     ],
   imports: [
     BrowserModule,
+    AuthGuardModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
