@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
+//TODO: icons for small screen instead of text
 
 @Component({
   selector: 'app-navigation',

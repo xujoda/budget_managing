@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit, AfterViewInit{
   loginUser(){
     if (this.loginForm.invalid)
       return
-//TODO: fix result (return from loginUser() )
     this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).
     then((result => {
       if (result == null){
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit, AfterViewInit{
       }
       else if (result.isValid === false){
         alert('wrong password')
-        // console.log('loggin error: ', result)
         this.firebaseErrorMessage = result.message
       }
     }))

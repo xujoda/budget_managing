@@ -9,8 +9,6 @@ import { MonhtlySpendingComponent } from './components/monhtly-spending/monhtly-
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthGuard } from './services/auth.guard';
 
-//TODO: Setting AuthGuard
-
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
