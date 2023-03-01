@@ -1,23 +1,25 @@
+<div>
+    <mat-card>
+        <H2>Введите логин и пароль для авторизации</H2>
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" type="email" matInput placeholder="Your email">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input formControlName="password" type="password" matInput placeholder="Your password">
+                </mat-form-field>
+            </p>
 
-<mat-card>
-    <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input formControlName="email" type="email" matInput placeholder="ur email">
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input formControlName="password" type="password" matInput placeholder="ur password">
-            </mat-form-field>
-        </p>
+            <div *ngIf="firebaseErrorMessage != ''" class="error-style"> 
+                <span>Wrong email or password :(</span>
+            </div>
 
-        <div *ngIf="firebaseErrorMessage != ''" class="error-style"> 
-            <span>Wrong email or password :(</span>
-        </div>
-
-        <button mat-raised-button color="primary" type="submit">Login</button>
-    </form>
-</mat-card>
+            <button mat-raised-button color="primary" type="submit">Login</button>
+        </form>
+    </mat-card>
+</div>
