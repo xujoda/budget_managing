@@ -1,11 +1,46 @@
-<div>
-    <div>
-        Incomes
-        Free balance
-        Monthly Spending
-        Daily Spending
+<div class="dashboard-container">
+    <h1>Welcome to your Budget Management App!</h1>
+    <p>Here are some quick stats:</p>
+    
+    <div class="stats-container">
+        <div class="stat-card">
+            <h3>Budget is</h3>
+            <p class="stat-value">{{budget}}</p>
+          </div>
+
+      <!-- <div class="stat-card">
+        <h3>Monthly Spending</h3>
+        <p class="stat-value">{{monthlySpending}}</p>
+      </div> -->
+      
+      <!-- <div class="stat-card">
+        <h3>Free Balance</h3>
+        <p class="stat-value">{{freeBalance}}</p>
+      </div> -->
+      
+      <!-- <div class="stat-card">
+        <h3>Incomes</h3>
+        <p class="stat-value">{{incomes}}</p>
+      </div> -->
     </div>
-
-
-
-</div> 
+    
+    <h2>Recent Transactions</h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>{{transaction.date}}</td>
+          <td>{{transaction.description}}</td>
+          <td>{{transaction.amount}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
