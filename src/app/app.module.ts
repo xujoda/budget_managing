@@ -29,7 +29,9 @@ import {AuthGuardModule} from '@angular/fire/auth-guard'
 
 import { MatInputModule } from '@angular/material/input'
 import { MatCardModule } from '@angular/material/card'
-import { MatButtonModule } from '@angular/material/button'
+import { MatButtonModule } from '@angular/material/button';
+import { BudgetCreatingDialogComponent } from './components/budget-creating-dialog/budget-creating-dialog.component'
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { MatButtonModule } from '@angular/material/button'
     DashboardComponent,
     LoginComponent,
     FullFreeBalanceComponent,
-    NavigationComponent
+    NavigationComponent,
+    BudgetCreatingDialogComponent
     ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { MatButtonModule } from '@angular/material/button'
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatDialogModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     // provideFirebaseApp(() => initializeApp(environment.firebase)),

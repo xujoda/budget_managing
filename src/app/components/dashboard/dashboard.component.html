@@ -1,11 +1,15 @@
 <div class="dashboard-container">
     <h1>Welcome to your Budget Management App!</h1>
     <p>Here are some quick stats:</p>
+
+    <button mat-raised-button (click)="openBudgetCreatingDialog()">Create Budget</button>
+
+    <button (click)="deleteBudget()">Delete Budget</button>
     
-    <div class="stats-container">
+    <div class="stats-container" *ngIf="budget[0]">
         <div class="stat-card">
             <h3>Budget is</h3>
-            <p class="stat-value">{{budget}}</p>
+            <p class="stat-value">{{budget[0].amount}}</p>
           </div>
 
       <!-- <div class="stat-card">

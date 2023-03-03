@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
-import { Observable } from 'rxjs';
+import { Console } from 'console';
+import { off } from 'process';
+import { Observable, map, of } from 'rxjs';
 import { Budget, Transaction } from './interfaces';
 
 @Injectable({
@@ -21,9 +23,10 @@ export class DataService {
     this.transactions = this.transactionsCollection.valueChanges({idField:'id'})
    }
 
-   addBudget (budget:Budget){
-    this.budgetsCollection.add(budget)
-   }
+   addBudget (budget:Budget): Promise<string>{
+    return this.budgetsCollection.add(budget)
+      .then(budgetRef => budgetRef.id)
+  }
 
    addTransaction(transaction:Transaction){
     this.transactionsCollection.add(transaction)
@@ -39,19 +42,24 @@ export class DataService {
     transactionDoc.update(transaction)
    }
 
-   deleteBudget(id:string){
-    const budgetDoc: AngularFirestoreDocument<Budget> = this.firestore.doc('budgets/${id}')
-    budgetDoc.delete()
-   }
+   deleteBudgetByName(name: string) {
+    const query = this.firestore.collection<Budget>('budgets', ref => ref.where('name', '==', name));
+    query.get().subscribe(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        doc.ref.delete();
+      });
+    });
+  }
 
+   // TODO: replace id to some name
    deleteTransaction(id:string){
     const transactionDoc: AngularFirestoreDocument<Transaction> = this.firestore.doc('transactions/${id}')
     transactionDoc.delete()
    }
 
-   getBudget(): Observable<Budget[]>{
-    return this.firestore.collection<Budget>('budget').valueChanges()
-   }
+   getBudget(): Observable<Budget[]> {
+    return this.firestore.collection<Budget>('budgets').valueChanges()
+  }
 
    getTransactions(): Observable<Transaction[]>{
     return this.firestore.collection<Transaction>('transaction').valueChanges()
