@@ -7,7 +7,7 @@ import { FullFreeBalanceComponent } from './components/full-free-balance/full-fr
 import { IncomesListComponent } from './components/incomes-list/incomes-list.component';
 import { MonhtlySpendingComponent } from './components/monhtly-spending/monhtly-spending.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { AuthGuard } from './services/auth.guard';
+import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},

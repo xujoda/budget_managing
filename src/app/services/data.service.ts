@@ -62,6 +62,6 @@ export class DataService {
   }
 
    getTransactions(): Observable<Transaction[]>{
-    return this.firestore.collection<Transaction>('transaction').valueChanges()
+    return this.firestore.collection<Transaction>('transactions').valueChanges()
    }
 }

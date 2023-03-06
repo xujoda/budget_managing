@@ -30,8 +30,11 @@ import {AuthGuardModule} from '@angular/fire/auth-guard'
 import { MatInputModule } from '@angular/material/input'
 import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker'
 import { BudgetCreatingDialogComponent } from './components/budget-creating-dialog/budget-creating-dialog.component'
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { TransactionCreatingDialogComponent } from './components/transaction-creating-dialog/transaction-creating-dialog.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -44,9 +47,13 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     LoginComponent,
     FullFreeBalanceComponent,
     NavigationComponent,
-    BudgetCreatingDialogComponent
+    BudgetCreatingDialogComponent,
+    TransactionCreatingDialogComponent
     ],
   imports: [
+    MatDatepickerModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
     BrowserModule,
     AuthGuardModule,
     FormsModule,

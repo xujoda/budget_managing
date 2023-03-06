@@ -4,29 +4,26 @@
 
     <button mat-raised-button (click)="openBudgetCreatingDialog()">Create Budget</button>
 
-    <button (click)="deleteBudget()">Delete Budget</button>
+    <button mat-raised-button (click)="deleteBudget()">Delete Budget</button>
+
+    <button mat-raised-button (click)="openTransactionCreatingDialog()">Create transaction</button>
     
     <div class="stats-container" *ngIf="budget[0]">
         <div class="stat-card">
             <h3>Budget is</h3>
             <p class="stat-value">{{budget[0].amount}}</p>
           </div>
-
-      <!-- <div class="stat-card">
-        <h3>Monthly Spending</h3>
-        <p class="stat-value">{{monthlySpending}}</p>
-      </div> -->
-      
-      <!-- <div class="stat-card">
-        <h3>Free Balance</h3>
-        <p class="stat-value">{{freeBalance}}</p>
-      </div> -->
-      
-      <!-- <div class="stat-card">
-        <h3>Incomes</h3>
-        <p class="stat-value">{{incomes}}</p>
-      </div> -->
-    </div>
+          
+          <div class="stat-card">
+            <h3>Free Balance</h3>
+            <p class="stat-value">{{freeBalance}}</p>
+          </div>
+          
+          <div class="stat-card">
+            <h3>Incomes</h3>
+            <p class="stat-value">{{incomes}}</p>
+          </div>
+        </div>
     
     <h2>Recent Transactions</h2>
     
@@ -36,14 +33,18 @@
           <th>Date</th>
           <th>Description</th>
           <th>Amount</th>
+          <th>Caregory</th>
+          <th>Comment</th>
         </tr>
       </thead>
       
       <tbody>
         <tr *ngFor="let transaction of transactions">
-          <td>{{transaction.date}}</td>
-          <td>{{transaction.description}}</td>
+          <td>{{ transaction.date.toDate() | date: 'dd/MM/yyyy'}}</td>
+          <td>{{transaction.typeOfSpending}}</td>
           <td>{{transaction.amount}}</td>
+          <td>{{transaction.category}}</td>
+          <td>{{transaction.comment}}</td>
         </tr>
       </tbody>
     </table>

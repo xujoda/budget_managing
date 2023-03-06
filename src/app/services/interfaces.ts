@@ -1,19 +1,18 @@
 import { Observable } from "rxjs"
+import { Timestamp } from '@angular/fire/firestore'
 
  export interface Budget {
-    //id?: string
+    id?: string
     name: string
     amount: number
  }
 
-
- // TODO: replace id to some name
  export interface Transaction {
     id?: string
     amount: number
     category: string
-    tyoeOfSpending: string
-    date: Date
+    typeOfSpending: string
+    date: Timestamp
     comment?: string
  }
 
@@ -29,17 +28,6 @@ import { Observable } from "rxjs"
     getTransactions(): Observable<Transaction[]>
  }
 
- export interface DailySpending {
-    id?: string
-    amount: number
-    date: Date
- }
-
- export interface MonthlySpending { 
-    id?: string
-    amount: number
-    month: Date
- }
 
  export interface Incomes {
     id?: string
@@ -48,3 +36,8 @@ import { Observable } from "rxjs"
     category: string
     comment?: string
  }
+
+ export interface user{
+   login: string,
+   password: string
+}

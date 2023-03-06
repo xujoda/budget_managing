@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { MatDialog } from '@angular/material/dialog'
 import { BudgetCreatingDialogComponent } from '../budget-creating-dialog/budget-creating-dialog.component';
-import { Budget } from 'src/app/services/interfaces';
+import { Budget, Incomes, Transaction } from 'src/app/services/interfaces';
+import { TransactionCreatingDialogComponent } from '../transaction-creating-dialog/transaction-creating-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,12 +13,16 @@ import { Budget } from 'src/app/services/interfaces';
 export class DashboardComponent implements OnInit {
 
   budget:Budget[] = []
-  transactions?: any[]
+  transactions?: Transaction[] = []
+  incomes:Incomes[] = []
+  freeBalance: number = 0
+
 
   constructor(private dataService: DataService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getBudget()
+    this.getTransactions()
   }
 
   openBudgetCreatingDialog(){
@@ -39,9 +44,27 @@ export class DashboardComponent implements OnInit {
     this.dataService.getTransactions().subscribe(transactions => this.transactions = transactions)
   }
 
+  getTransactions(){
+    this.dataService.getTransactions().subscribe(transactions => {
+      this.transactions = transactions
+      console.log(transactions[0])
+    })
+  }
+
   deleteBudget(){
     this.dataService.deleteBudgetByName("main")
   }
+
+  openTransactionCreatingDialog(){
+    const dialogRef = this.dialog.open(TransactionCreatingDialogComponent)
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.dataService.addTransaction(result)
+      }
+    })
+  }
+
 
 
 }
