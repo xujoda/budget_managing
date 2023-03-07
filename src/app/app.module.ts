@@ -35,7 +35,8 @@ import { BudgetCreatingDialogComponent } from './components/budget-creating-dial
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TransactionCreatingDialogComponent } from './components/transaction-creating-dialog/transaction-creating-dialog.component';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { DeleteBudgetByNameDialogComponent } from './components/delete-budget-by-name-dialog/delete-budget-by-name-dialog.component';
+import {MatSelectModule} from '@angular/material/select'
 
 @NgModule({
   declarations: [
@@ -48,9 +49,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     FullFreeBalanceComponent,
     NavigationComponent,
     BudgetCreatingDialogComponent,
-    TransactionCreatingDialogComponent
+    TransactionCreatingDialogComponent,
+    DeleteBudgetByNameDialogComponent
     ],
   imports: [
+    MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
     BrowserAnimationsModule,

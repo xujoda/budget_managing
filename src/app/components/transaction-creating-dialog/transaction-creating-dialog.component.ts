@@ -25,7 +25,6 @@ export class TransactionCreatingDialogComponent {
     public dialogRef: MatDialogRef<TransactionCreatingDialogComponent>) { }
 
   onCreate(): void {
-    console.log(this.transaction.date)
     this.dialogRef.close(this.transaction)
   }
 

@@ -4,7 +4,7 @@
 
     <button mat-raised-button (click)="openBudgetCreatingDialog()">Create Budget</button>
 
-    <button mat-raised-button (click)="deleteBudget()">Delete Budget</button>
+    <button mat-raised-button (click)="openBudgetDeleteByNameDialog()">Delete Budget</button>
 
     <button mat-raised-button (click)="openTransactionCreatingDialog()">Create transaction</button>
     
@@ -16,12 +16,7 @@
           
           <div class="stat-card">
             <h3>Free Balance</h3>
-            <p class="stat-value">{{freeBalance}}</p>
-          </div>
-          
-          <div class="stat-card">
-            <h3>Incomes</h3>
-            <p class="stat-value">{{incomes}}</p>
+            <p class="stat-value">{{budget[0].free}}</p>
           </div>
         </div>
     

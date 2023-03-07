@@ -1,14 +1,19 @@
+import { ObserversModule } from '@angular/cdk/observers';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
 import { Console } from 'console';
+import { type } from 'os';
 import { off } from 'process';
 import { Observable, map, of } from 'rxjs';
+import { InspectOptions } from 'util';
 import { Budget, Transaction } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
+  budgetID:string = '6HzvENde9qnvoBNLnPzy'
 
   private budgetsCollection: AngularFirestoreCollection<Budget>
   budgets: Observable<Budget[]>
@@ -23,22 +28,43 @@ export class DataService {
     this.transactions = this.transactionsCollection.valueChanges({idField:'id'})
    }
 
-   addBudget (budget:Budget): Promise<string>{
-    return this.budgetsCollection.add(budget)
-      .then(budgetRef => budgetRef.id)
+   addBudget (budget:Budget){
+    this.budgetsCollection.add(budget)
   }
 
    addTransaction(transaction:Transaction){
     this.transactionsCollection.add(transaction)
    }
 
+   updateBudgetByTransaction(budget:Budget, transaction:Transaction){
+    this.addTransaction(transaction)
+    const typeOfSpending = transaction.typeOfSpending
+    if (typeOfSpending === 'Income') 
+      {
+        budget.amount += transaction.amount
+        budget.free += transaction.amount
+      }
+    if (typeOfSpending === 'Daily')
+      {
+        budget.amount -= transaction.amount
+        budget.free -= transaction.amount
+      }
+    if (typeOfSpending === 'Monthly')
+      {
+        budget.amount -= transaction.amount        
+      }
+
+    this.updateBudget(budget)
+   }
+
    updateBudget(budget: Budget){
-    const budgetDoc: AngularFirestoreDocument<Budget> = this.firestore.doc('budgets/${budget.id}')
+    const budgetDoc: AngularFirestoreDocument<Budget> = this.firestore.doc(`budgets/${this.budgetID}`);
+
     budgetDoc.update(budget)
    }
 
    updateTransaction(transaction:Transaction){
-    const transactionDoc: AngularFirestoreDocument<Transaction> = this.firestore.doc('transactions/${transaction.id}')
+    const transactionDoc: AngularFirestoreDocument<Transaction> = this.firestore.doc(`transactions/${transaction.id}`)
     transactionDoc.update(transaction)
    }
 

@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Delete Budget by Name</h2>
+<mat-dialog-content>
+  <form #budgetForm="ngForm">
+    <mat-form-field>
+      <mat-label>Budget Name</mat-label>
+      <input matInput type="string" name="name" [(ngModel)]="budgetName" required>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" [disabled]="!budgetForm.valid" (click)="onDelete()">Delete</button>
+</mat-dialog-actions>

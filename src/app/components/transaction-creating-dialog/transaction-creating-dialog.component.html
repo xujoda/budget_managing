@@ -3,9 +3,13 @@
   <form #TransactionForm="ngForm">
     <mat-form-field>
       <mat-label>Type of Transaction</mat-label>
-      <input matInput type="string" name="typeOfSpending" [(ngModel)]="transaction.typeOfSpending" required>
-    </mat-form-field>
-
+      <select matNativeControl name="typeOfSpending" [(ngModel)]="transaction.typeOfSpending" required>
+        <option value="Income">Income</option>
+        <option value="Daily">Daily</option>
+        <option value="Monthly">Monthly</option>
+      </select>
+    </mat-form-field> 
+    
     <mat-form-field>
         <mat-label>Category of Transaction</mat-label>
         <input matInput type="string" name="category" [(ngModel)]="transaction.category" required>

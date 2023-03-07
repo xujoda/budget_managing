@@ -5,13 +5,14 @@ import { Timestamp } from '@angular/fire/firestore'
     id?: string
     name: string
     amount: number
+    free: number
  }
 
  export interface Transaction {
     id?: string
     amount: number
     category: string
-    typeOfSpending: string
+    typeOfSpending: string // Daily / Monthly / Income
     date: Timestamp
     comment?: string
  }
@@ -26,15 +27,6 @@ import { Timestamp } from '@angular/fire/firestore'
     updateTransaction(transaction: Transaction): Promise<void>
     deleteTransaction(id:string): Promise<void>
     getTransactions(): Observable<Transaction[]>
- }
-
-
- export interface Incomes {
-    id?: string
-    amount: string
-    date: Date
-    category: string
-    comment?: string
  }
 
  export interface user{

@@ -10,15 +10,14 @@ import { Budget } from 'src/app/services/interfaces';
 })
 export class BudgetCreatingDialogComponent {
 
-  budget: Budget = { name: "default", amount: 0 }
+  budget: Budget = { name: "main", amount: 0, free: 0 }
 
   @Inject(MAT_DIALOG_DATA) public data: any
 
-  constructor(
-    public dialogRef: MatDialogRef<BudgetCreatingDialogComponent>
-    ) { }
+  constructor(public dialogRef: MatDialogRef<BudgetCreatingDialogComponent>) { }
 
   onCreate(): void {
+    this.budget.free = this.budget.amount
     this.dialogRef.close(this.budget)
   }
 

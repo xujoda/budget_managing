@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { MatDialog } from '@angular/material/dialog'
 import { BudgetCreatingDialogComponent } from '../budget-creating-dialog/budget-creating-dialog.component';
-import { Budget, Incomes, Transaction } from 'src/app/services/interfaces';
+import { Budget, Transaction } from 'src/app/services/interfaces';
 import { TransactionCreatingDialogComponent } from '../transaction-creating-dialog/transaction-creating-dialog.component';
+import { DeleteBudgetByNameDialogComponent } from '../delete-budget-by-name-dialog/delete-budget-by-name-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,9 +15,6 @@ export class DashboardComponent implements OnInit {
 
   budget:Budget[] = []
   transactions?: Transaction[] = []
-  incomes:Incomes[] = []
-  freeBalance: number = 0
-
 
   constructor(private dataService: DataService, private dialog: MatDialog) { }
 
@@ -37,22 +35,20 @@ export class DashboardComponent implements OnInit {
 
   getBudget(){
     this.dataService.getBudget().subscribe(budget => {
-      this.budget = budget,
-      console.log(budget[0])
+      this.budget = budget
     })
     
     this.dataService.getTransactions().subscribe(transactions => this.transactions = transactions)
   }
 
-  getTransactions(){
-    this.dataService.getTransactions().subscribe(transactions => {
-      this.transactions = transactions
-      console.log(transactions[0])
-    })
-  }
+  openBudgetDeleteByNameDialog(){
+    const dialogRef = this.dialog.open(DeleteBudgetByNameDialogComponent)
 
-  deleteBudget(){
-    this.dataService.deleteBudgetByName("main")
+    dialogRef.afterClosed().subscribe(budgetName => {
+      if (budgetName){
+        this.dataService.deleteBudgetByName(budgetName)
+      }
+    })
   }
 
   openTransactionCreatingDialog(){
@@ -60,11 +56,14 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        this.dataService.addTransaction(result)
+        this.dataService.updateBudgetByTransaction(this.budget[0],result)
       }
     })
+  }  
+
+  getTransactions(){
+    this.dataService.getTransactions().subscribe(transactions => {
+      this.transactions = transactions
+    })
   }
-
-
-
 }
