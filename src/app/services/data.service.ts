@@ -1,6 +1,7 @@
 import { ObserversModule } from '@angular/cdk/observers';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
+import { Timestamp } from '@angular/fire/firestore';
 import { Console } from 'console';
 import { type } from 'os';
 import { off } from 'process';
@@ -51,7 +52,7 @@ export class DataService {
       }
     if (typeOfSpending === 'Monthly')
       {
-        budget.amount -= transaction.amount        
+        budget.amount -= transaction.amount
       }
 
     this.updateBudget(budget)
@@ -59,7 +60,6 @@ export class DataService {
 
    updateBudget(budget: Budget){
     const budgetDoc: AngularFirestoreDocument<Budget> = this.firestore.doc(`budgets/${this.budgetID}`);
-
     budgetDoc.update(budget)
    }
 

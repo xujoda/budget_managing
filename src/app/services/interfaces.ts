@@ -17,6 +17,7 @@ import { Timestamp } from '@angular/fire/firestore'
     comment?: string
  }
 
+ //TODO: дополнить интерфейс (апдейты)
  export interface DataService {
     addBudget(budget: Budget): Promise<void>
     updateBudget(budget: Budget): Promise<void>
