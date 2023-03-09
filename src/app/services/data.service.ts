@@ -1,12 +1,6 @@
-import { ObserversModule } from '@angular/cdk/observers';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
-import { Timestamp } from '@angular/fire/firestore';
-import { Console } from 'console';
-import { type } from 'os';
-import { off } from 'process';
-import { Observable, map, of } from 'rxjs';
-import { InspectOptions } from 'util';
+import { Observable } from 'rxjs';
 import { Budget, Transaction } from './interfaces';
 
 @Injectable({
@@ -40,6 +34,7 @@ export class DataService {
    updateBudgetByTransaction(budget:Budget, transaction:Transaction){
     this.addTransaction(transaction)
     const typeOfSpending = transaction.typeOfSpending
+    const posting = transaction.posting
     if (typeOfSpending === 'Income') 
       {
         budget.amount += transaction.amount
@@ -52,9 +47,17 @@ export class DataService {
       }
     if (typeOfSpending === 'Monthly')
       {
-        budget.amount -= transaction.amount
+        if (posting)
+        {
+          transaction.posting = true
+          transaction.typeOfSpending = 'Daily'
+          this.updateBudgetByTransaction(budget,transaction)
+        }
+        else 
+        {
+          budget.amount -= transaction.amount
+        }
       }
-
     this.updateBudget(budget)
    }
 
@@ -83,11 +86,12 @@ export class DataService {
     transactionDoc.delete()
    }
 
-   getBudget(): Observable<Budget[]> {
+   getBudget(): Observable<Budget[]> {    
     return this.firestore.collection<Budget>('budgets').valueChanges()
   }
 
    getTransactions(): Observable<Transaction[]>{
+    //const q = query(transactionsRef, orderBy("date"), limit(10));
     return this.firestore.collection<Transaction>('transactions').valueChanges()
    }
 }

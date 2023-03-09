@@ -27,6 +27,7 @@
         <tr>
           <th>Date</th>
           <th>Description</th>
+          <th>Monthly</th>
           <th>Amount</th>
           <th>Caregory</th>
           <th>Comment</th>
@@ -37,6 +38,7 @@
         <tr *ngFor="let transaction of transactions">
           <td>{{ transaction.date.toDate() | date: 'dd/MM/yyyy'}}</td>
           <td>{{transaction.typeOfSpending}}</td>
+          <td>{{transaction.posting}}</td>
           <td>{{transaction.amount}}</td>
           <td>{{transaction.category}}</td>
           <td>{{transaction.comment}}</td>

@@ -13,18 +13,18 @@ import { Timestamp } from '@angular/fire/firestore'
     amount: number
     category: string
     typeOfSpending: string // Daily / Monthly / Income
+    posting: boolean
     date: Timestamp
     comment?: string
  }
 
- //TODO: дополнить интерфейс (апдейты)
  export interface DataService {
     addBudget(budget: Budget): Promise<void>
     updateBudget(budget: Budget): Promise<void>
     deleteBudget(id:string): Promise<void>
     getBudget(): Observable<Budget>
 
-    addTransaction(transaction: Transaction): Promise<void>
+    updateBudgetByTransaction(transaction: Transaction): Promise<void> // add transaction
     updateTransaction(transaction: Transaction): Promise<void>
     deleteTransaction(id:string): Promise<void>
     getTransactions(): Observable<Transaction[]>

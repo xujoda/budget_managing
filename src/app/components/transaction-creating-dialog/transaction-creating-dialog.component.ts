@@ -15,6 +15,7 @@ export class TransactionCreatingDialogComponent {
     amount: 0,
     category: '',
     typeOfSpending: '',
+    posting: false,
     date: Timestamp.fromDate(new Date()),
     comment: ''
   }
