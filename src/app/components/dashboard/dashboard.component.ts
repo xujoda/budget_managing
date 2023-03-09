@@ -6,6 +6,7 @@ import { Budget, Transaction } from 'src/app/services/interfaces';
 import { TransactionCreatingDialogComponent } from '../transaction-creating-dialog/transaction-creating-dialog.component';
 import { DeleteBudgetByNameDialogComponent } from '../delete-budget-by-name-dialog/delete-budget-by-name-dialog.component';
 import { sortedChanges } from '@angular/fire/compat/firestore';
+import { orderBy } from '@firebase/firestore';
 
 @Component({
   selector: 'app-dashboard',
@@ -66,6 +67,5 @@ export class DashboardComponent implements OnInit {
     this.dataService.getTransactions().subscribe(transactions => {
       this.transactions = transactions
     })
-    this.transactions?.sort((a:any,b:any)=> a - b)
   }
 }
