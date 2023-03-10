@@ -34,3 +34,7 @@ import { Timestamp } from '@angular/fire/firestore'
    login: string,
    password: string
 }
+
+export interface PageData {
+   title: string;
+ }

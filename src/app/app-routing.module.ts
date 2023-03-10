@@ -9,14 +9,18 @@ import { MonhtlySpendingComponent } from './components/monhtly-spending/monhtly-
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthGuard } from './services/auth/auth.guard';
 
+interface PageData {
+  title: string;
+}
+
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'daily', component: DailySpendingComponent, canActivate: [AuthGuard]},
-  {path: 'monthly', component: MonhtlySpendingComponent, canActivate: [AuthGuard]},
-  {path: 'balance', component: FullFreeBalanceComponent, canActivate: [AuthGuard]},
-  {path: 'incomes', component: IncomesListComponent, canActivate: [AuthGuard]},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent, data: {title: 'Authorization'}},
+  {path: 'daily', component: DailySpendingComponent, canActivate: [AuthGuard], data: {title: 'Daily Sendings'} as PageData},
+  {path: 'monthly', component: MonhtlySpendingComponent, canActivate: [AuthGuard], data: {title: 'Monthly Spendings'} as PageData},
+  {path: 'balance', component: FullFreeBalanceComponent, canActivate: [AuthGuard], data: {title: 'Balance'} as PageData},
+  {path: 'incomes', component: IncomesListComponent, canActivate: [AuthGuard], data: {title: 'Incomes'} as PageData},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: {title: 'Dashboard'} as PageData},
   {path: '**', component: LoginComponent},
 ];
 

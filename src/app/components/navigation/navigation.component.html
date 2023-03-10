@@ -1,33 +1,45 @@
-<nav>
-
-    <button *ngIf="!(fbAuth.user | async)" mat-raised-button color="primary" routerLink="/login">
-        Login
-    </button>
-
-    <button *ngIf="(fbAuth.user | async)" mat-raised-button color="primary" style="background-color: brown;" (click)="logout()">
-        Log out
-    </button>
-
-    <button mat-raised-button color="primary" routerLink="/dashboard">
-        Dashboard
-    </button>
-
-    <button mat-raised-button color="primary" routerLink="/daily">
-        Daily Spending
-    </button>
-
-    <button mat-raised-button color="primary" routerLink="/monthly">
-        Monthly Spending
-    </button>
-
-    <button mat-raised-button color="primary" routerLink="/balance">
-        Free Balance
-    </button>
-
-    <button mat-raised-button color="primary" routerLink="/incomes">
-        Incomes
-    </button>
-
-    
-
-</nav>
+<!-- <mat-sidenav-container> -->
+  <mat-sidenav-container>
+  <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <button mat-item mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-item routerLink="/dashboard" (click)="sidenav.toggle()">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </button>
+        <button mat-item routerLink="/daily" (click)="sidenav.toggle()">
+          <mat-icon>date_range</mat-icon>
+          <span>Daily Spending</span>
+        </button>
+        <button mat-item routerLink="/monthly" (click)="sidenav.toggle()">
+          <mat-icon>calendar_today</mat-icon>
+          <span>Monthly Spending</span>
+        </button>
+        <button mat-item routerLink="/balance" (click)="sidenav.toggle()">
+          <mat-icon>account_balance_wallet</mat-icon>
+          <span>Free Balance</span>
+        </button>
+        <button mat-item routerLink="/incomes" (click)="sidenav.toggle()">
+          <mat-icon>attach_money</mat-icon>
+          <span>Incomes </span>
+        </button>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>{{pageTitle}}</span>
+        <button *ngIf="!(fbAuth.user | async)" mat-raised-button routerLink="/login">
+          Login
+        </button>
+        <button *ngIf="(fbAuth.user | async)" mat-raised-button style="background-color: #f50057;" (click)="logout()">
+          Log out
+        </button>
+      </mat-toolbar>
+    </mat-sidenav-content>
+  <!-- </mat-sidenav-container> -->
+</mat-sidenav-container>

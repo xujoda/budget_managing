@@ -1,3 +1,19 @@
-button{
-    margin-right: 5px;
+@use '@angular/material' as mat;
+@import '/src/styles.scss';
+
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+mat-sidenav{
+  padding-right: 5ch;
 }
+
+button{
+  font-size: 16px;
+}
+
+.right {
+    margin-left: auto;
+  }
