@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DataService } from 'src/app/services/data.service';
+import { Budget, Transaction } from 'src/app/services/interfaces';
+import { TransactionCreatingDialogComponent } from '../transaction-creating-dialog/transaction-creating-dialog.component';
 
 @Component({
   selector: 'app-daily-spending',
@@ -7,9 +11,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DailySpendingComponent implements OnInit {
 
-  constructor() { }
+  budget: Budget[] = []
+  transactions?: Transaction[] = []
+
+  constructor(private dataService: DataService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.getBudget()
+    this.getTransactions()
+  }
+
+  getBudget(){
+    this.dataService.getBudget().subscribe(budget => {
+      this.budget = budget
+    })
+    
+    this.dataService.getTransactions().subscribe(transactions => this.transactions = transactions)
+  }
+
+  openTransactionCreatingDialog(){
+    const dialogRef = this.dialog.open(TransactionCreatingDialogComponent)
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.dataService.updateBudgetByTransaction(this.budget[0],result)
+      }
+    })
+  } 
+
+  getTransactions(){
+    this.dataService.getTransactions().subscribe(transactions => {
+      this.transactions = transactions
+    })
   }
 
 }

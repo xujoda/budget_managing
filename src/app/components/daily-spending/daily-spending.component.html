@@ -1,0 +1,33 @@
+<br><div class="dashboard-container">
+    <h1>Daily Spending</h1>
+
+    <button mat-raised-button class="create_btn" (click)="openTransactionCreatingDialog()">Create transaction</button>
+    <br><br>
+
+    <br>
+    <h2>All Transactions</h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Monthly</th>
+          <th>Amount</th>
+          <th>Caregory</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr *ngFor="let transaction of transactions, let even = even" [ngClass]="{'table-row-even':even,'table-row-odd':!even}">
+          <td>{{transaction.date.toDate() | date: 'dd/MM/yyyy'}}</td>
+          <td>{{transaction.typeOfSpending}}</td>
+          <td>{{transaction.posting}}</td>
+          <td>{{transaction.amount}}</td>
+          <td>{{transaction.category}}</td>
+          <td>{{transaction.comment}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,25 +1,26 @@
-<div class="dashboard-container">
-    <h1>Welcome to your Budget Management App!</h1>
-    <p>Here are some quick stats:</p>
+<br><div class="dashboard-container">
+    <h1>Dashboard</h1>
 
     <button mat-raised-button class="create_btn" (click)="openBudgetCreatingDialog()">Create Budget</button>
 
     <button mat-raised-button class="delete_btn" (click)="openBudgetDeleteByNameDialog()">Delete Budget</button>
 
-    <button mat-raised-button class="delete_btn" (click)="openTransactionCreatingDialog()">Create transaction</button>
+    <button mat-raised-button class="create_btn" (click)="openTransactionCreatingDialog()">Create transaction</button>
+    <br><br>
     
     <div class="stats-container" *ngIf="budget[0]">
         <div class="stat-card">
             <h3>Budget is</h3>
             <p class="stat-value">{{budget[0].amount}}</p>
-          </div>
+        </div>
           
-          <div class="stat-card">
+        <div class="stat-card">
             <h3>Free Balance</h3>
             <p class="stat-value">{{budget[0].free}}</p>
-          </div>
         </div>
-    
+    </div>
+
+    <br>
     <h2>Recent Transactions</h2>
     
     <table>
@@ -35,7 +36,7 @@
       </thead>
       
       <tbody>
-        <tr *ngFor="let transaction of transactions">
+        <tr *ngFor="let transaction of transactions, let even = even" [ngClass]="{'table-row-even':even,'table-row-odd':!even}">
           <td>{{transaction.date.toDate() | date: 'dd/MM/yyyy'}}</td>
           <td>{{transaction.typeOfSpending}}</td>
           <td>{{transaction.posting}}</td>

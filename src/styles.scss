@@ -1,3 +1,7 @@
+@use '@angular/material' as mat;
+
+$my-palette: mat.define-palette(mat.$indigo-palette);
+
 html, body { 
     height: 100%; 
 }
@@ -6,17 +10,81 @@ body {
     display: flex;
     justify-content: center;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: aliceblue;
+    // background-color: rgb(206, 240, 240);
+    width: 100%;
 }
 
+$my-palette: (
+    100:    #D1C4E9,
+    200:    #B39DDB,
+    300:    #9575CD,
+    400:    #7E57C2,
+    500:    #673AB7,
+    600:    #5E35B1,
+    700:    #512DA8,
+    800:    #4527A0,
+    900:    #311B92,
+    A100:    #B388FF,
+    A200:    #7C4DFF,
+    A400:    #651FFF,
+    A700:    #6200EA,
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: white,
+   // ... continues to 900
+ )
+);
     
 nav{
-    width: 100%;  
+    width: 100%;
 }
 
 table{
     border-radius: 1ch;
     border-style: groove;
+    width: 100%;
+    text-align: center;
+}
+
+th{
+    // background-color: lightsteelblue;
+}
+
+.table-row-even{
+    // background-color: lightblue;
+}
+
+.table-row-odd{
+    // background-color: lightcyan;
+}
+
+.stats-container{
+    display: flexbox;
+    border-radius: 1ch;
+    border-style: groove;
+    // background-color: rgb(191, 223, 223);
+    padding: 1ch 1ch;
+    font-size: large;
+    font: bold;
+    font-style: italic;
+    // color: darkblue;
+}
+
+.stats-value{
+
 }
 
 
+.create_btn{
+    border-radius: 2ch;
+    // background-color: aquamarine;
+    // color: dimgrey;
+}
+
+.delete_btn{
+    border-radius: 2ch;
+    // background-color: orangered;
+    // color: azure;
+}
