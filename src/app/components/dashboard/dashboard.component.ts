@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBudget()
-    this.getTransactions()
+    this.getAllTransactions()
   }
 
   openBudgetCreatingDialog(){
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
       this.budget = budget
     })
     
-    this.dataService.getTransactions().subscribe(transactions => this.transactions = transactions)
+    this.dataService.getAllTransactions().subscribe(transactions => this.transactions = transactions)
   }
 
   openBudgetDeleteByNameDialog(){
@@ -64,8 +64,8 @@ export class DashboardComponent implements OnInit {
     })
   }  
 
-  getTransactions(){
-    this.dataService.getTransactions().subscribe(transactions => {
+  getAllTransactions(){
+    this.dataService.getAllTransactions().subscribe(transactions => {
       this.transactions = transactions
     })
   }

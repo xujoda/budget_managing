@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data.service';
 import { Budget, Transaction } from 'src/app/services/interfaces';
 import { TransactionCreatingDialogComponent } from '../transaction-creating-dialog/transaction-creating-dialog.component';
+import { TransactionInfoDialogComponent } from '../transaction-info-dialog/transaction-info-dialog.component';
 
 @Component({
   selector: 'app-daily-spending',
@@ -26,7 +27,7 @@ export class DailySpendingComponent implements OnInit {
       this.budget = budget
     })
     
-    this.dataService.getTransactions().subscribe(transactions => this.transactions = transactions)
+    this.dataService.getAllTransactions().subscribe(transactions => this.transactions = transactions)
   }
 
   openTransactionCreatingDialog(){
@@ -43,6 +44,12 @@ export class DailySpendingComponent implements OnInit {
     this.dataService.getDailyTransactions().subscribe(transactions => {
       this.transactions = transactions
     })
+  }
+
+  getTransactionInfo(transaction: Transaction){
+    const dialogRef = this.dialog.open(TransactionInfoDialogComponent, {
+      data: { transaction: transaction }
+    });    
   }
 
 }

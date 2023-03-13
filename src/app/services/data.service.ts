@@ -90,7 +90,7 @@ export class DataService {
     return this.firestore.collection<Budget>('budgets').valueChanges()
   }
 
-   getTransactions(): Observable<Transaction[]>{
+   getAllTransactions(): Observable<Transaction[]>{
     return this.firestore.collection<Transaction>('transactions', ref => ref
     .orderBy('date', 'desc')
     ).valueChanges();
@@ -99,6 +99,20 @@ export class DataService {
    getDailyTransactions(): Observable<Transaction[]>{
     return this.firestore.collection<Transaction>('transactions', ref => ref
     .where('typeOfSpending','==','Daily')
+    .orderBy('date','desc')
+    ).valueChanges();
+   }
+
+   getIncomesTransactions(): Observable<Transaction[]>{
+    return this.firestore.collection<Transaction>('transactions', ref => ref
+    .where('typeOfSpending','==','Income')
+    .orderBy('date','desc')
+    ).valueChanges();
+   }
+
+   getMonthlyTransactions(): Observable<Transaction[]>{
+    return this.firestore.collection<Transaction>('transactions', ref => ref
+    .where('typeOfSpending','==','Monthly')
     .orderBy('date','desc')
     ).valueChanges();
    }

@@ -1,14 +1,14 @@
 @use '@angular/material' as mat;
 @import '/src/styles.scss';
 
-.stats-container{
-    display: flexbox;
-    border-radius: 1ch;
-    border-style: groove;
-    background-color: mat.get-color-from-palette($primary-palette,200);
-    color: mat.get-color-from-palette($primary-palette,contrast 200);
-    padding: 1ch 1ch;
-    font-size: large;
-    font: bold;
-    font-style: italic;
-}
+// .stats-container{
+//     display: flexbox;
+//     border-radius: 1ch;
+//     border-style: groove;
+//     background-color: mat.get-color-from-palette($primary-palette,200);
+//     color: mat.get-color-from-palette($primary-palette,contrast 200);
+//     padding: 1ch 1ch;
+//     font-size: large;
+//     font: bold;
+//     font-style: italic;
+// }
