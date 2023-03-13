@@ -1,21 +1,42 @@
 <br><div class="dashboard-container">
-    <h1>Dashboard</h1>
+  <div>
+    <button mat-raised-button class="create_btn" (click)="openBudgetCreatingDialog()">
+      <mat-icon>add_circle_outline</mat-icon>
+      Create Budget
+    </button>
+  </div>
+  <br>
 
-    <button mat-raised-button class="create_btn" (click)="openBudgetCreatingDialog()">Create Budget</button>
+  <div>
+    <button mat-raised-button class="delete_btn" (click)="openBudgetDeleteByNameDialog()">
+      <mat-icon>delete_outline</mat-icon>
+      Delete Budget
+    </button>
+  </div>
+  <br>
 
-    <button mat-raised-button class="delete_btn" (click)="openBudgetDeleteByNameDialog()">Delete Budget</button>
-
-    <button mat-raised-button class="create_btn" (click)="openTransactionCreatingDialog()">Create transaction</button>
-    <br><br>
-    
+  <div>
+    <button mat-raised-button class="create_btn" (click)="openTransactionCreatingDialog()">
+      <mat-icon>payment</mat-icon>
+      Create transaction
+    </button>
+  </div>
+  <br>
+  
     <div class="stats-container" *ngIf="budget[0]">
         <div class="stat-card">
-            <h3>Budget is</h3>
+            <h3>
+              <mat-icon> local_atm</mat-icon>
+              Budget is
+            </h3>
             <p class="stat-value">{{budget[0].amount}}</p>
         </div>
           
         <div class="stat-card">
-            <h3>Free Balance</h3>
+            <h3>
+              <mat-icon>money</mat-icon>
+              Free Balance
+            </h3>
             <p class="stat-value">{{budget[0].free}}</p>
         </div>
     </div>
@@ -26,12 +47,29 @@
     <table>
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Description</th>
-          <th>Monthly</th>
-          <th>Amount</th>
-          <th>Caregory</th>
-          <th>Comment</th>
+          <th>
+            <mat-icon>calendar_today</mat-icon>
+          </th>
+          <th>
+            <mat-icon>toc</mat-icon>
+            Description
+          </th>
+          <th>
+            <mat-icon>date_range</mat-icon>
+            Monthly
+          </th>
+          <th>
+            <mat-icon>money</mat-icon>
+            Amount
+          </th>
+          <th>
+            <mat-icon>subject</mat-icon>
+            Caregory
+          </th>
+          <th>
+            <mat-icon> insert_comment</mat-icon>
+            Comment
+          </th>
         </tr>
       </thead>
       

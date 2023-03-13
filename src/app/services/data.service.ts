@@ -90,9 +90,7 @@ export class DataService {
     return this.firestore.collection<Budget>('budgets').valueChanges()
   }
 
-  // TODO: create query for sorting transactions || sort returned collection
    getTransactions(): Observable<Transaction[]>{
-    //const q = query(transactionsRef, orderBy("date"), limit(10));
-    return this.firestore.collection<Transaction>('transactions').valueChanges()
+    return this.firestore.collection<Transaction>('transactions', ref => ref.orderBy('date', 'desc')).valueChanges();
    }
 }

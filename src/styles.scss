@@ -68,17 +68,19 @@ $secondary-palette: (
 
 
 html, body { 
+    // margin: 0 auto;
+    padding-left: 2ch;
+    max-width: 375px;
+    display: flex;
+    justify-content: center;
     height: 100%; 
 }
 body { 
-    // margin: 0 auto;
-    // display: flex;
-    // justify-content: center;
+
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 16px;
     background-color: mat.get-color-from-palette($primary-palette,50);
     color: mat.get-color-from-palette($primary-palette,contrast 50);
-    //width: 100%;
 }
 
 h1,h2,h3{

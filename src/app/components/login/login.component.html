@@ -4,7 +4,10 @@
         <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
             <p>
                 <mat-form-field appearance="outline">
-                    <mat-label>Email</mat-label>
+                    <mat-label>
+                        <mat-icon>alternate_email</mat-icon>
+                        Email
+                    </mat-label>
                     <input formControlName="email" type="email" matInput placeholder="Your email">
                 </mat-form-field>
             </p>

@@ -1,29 +1,28 @@
-<!-- <mat-sidenav-container> -->
   <mat-sidenav-container>
   <mat-sidenav #sidenav>
-      <mat-nav-list>
+      <mat-nav-list style="padding-left: 2ch;">
         <button mat-item mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
-        <button mat-item routerLink="/dashboard" (click)="sidenav.toggle()">
-          <mat-icon>dashboard</mat-icon>
-          <span>Dashboard</span>
+        <button mat-item mat-icon-button routerLink="/dashboard" (click)="sidenav.toggle()">
+          <mat-icon>account_balance</mat-icon>
+          <!-- <span>Dashboard</span> -->
         </button>
-        <button mat-item routerLink="/daily" (click)="sidenav.toggle()">
+        <button mat-item mat-icon-button routerLink="/daily" (click)="sidenav.toggle()">
+          <mat-icon>today</mat-icon>
+          <!-- <span>Daily Spending</span> -->
+        </button>
+        <button mat-item mat-icon-button routerLink="/monthly" (click)="sidenav.toggle()">
           <mat-icon>date_range</mat-icon>
-          <span>Daily Spending</span>
+          <!-- <span>Monthly Spending</span> -->
         </button>
-        <button mat-item routerLink="/monthly" (click)="sidenav.toggle()">
-          <mat-icon>calendar_today</mat-icon>
-          <span>Monthly Spending</span>
-        </button>
-        <button mat-item routerLink="/balance" (click)="sidenav.toggle()">
+        <button mat-item mat-icon-button routerLink="/balance" (click)="sidenav.toggle()">
           <mat-icon>account_balance_wallet</mat-icon>
-          <span>Free Balance</span>
+          <!-- <span>Free Balance</span> -->
         </button>
-        <button mat-item routerLink="/incomes" (click)="sidenav.toggle()">
+        <button mat-item mat-icon-button routerLink="/incomes" (click)="sidenav.toggle()">
           <mat-icon>attach_money</mat-icon>
-          <span>Incomes </span>
+          <!-- <span>Incomes </span> -->
         </button>
       </mat-nav-list>
     </mat-sidenav>
@@ -34,12 +33,13 @@
         </button>
         <span>{{pageTitle}}</span>
         <button *ngIf="!(fbAuth.user | async)" mat-raised-button routerLink="/login">
+          <mat-icon>meeting_room</mat-icon>
           Login
         </button>
         <button *ngIf="(fbAuth.user | async)" mat-raised-button style="background-color: #f50057;" (click)="logout()">
+          <mat-icon>no_meeting_room</mat-icon>
           Log out
         </button>
       </mat-toolbar>
     </mat-sidenav-content>
-  <!-- </mat-sidenav-container> -->
 </mat-sidenav-container>
