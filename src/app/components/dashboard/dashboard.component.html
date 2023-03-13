@@ -54,10 +54,10 @@
             <mat-icon>toc</mat-icon>
             Description
           </th>
-          <th>
+          <!-- <th>
             <mat-icon>date_range</mat-icon>
             Monthly
-          </th>
+          </th> -->
           <th>
             <mat-icon>money</mat-icon>
             Amount
@@ -66,21 +66,21 @@
             <mat-icon>subject</mat-icon>
             Caregory
           </th>
-          <th>
+          <!-- <th>
             <mat-icon> insert_comment</mat-icon>
             Comment
-          </th>
+          </th> -->
         </tr>
       </thead>
       
       <tbody>
-        <tr *ngFor="let transaction of transactions, let even = even" [ngClass]="{'table-row-even':even,'table-row-odd':!even}">
-          <td>{{transaction.date.toDate() | date: 'dd/MM/yyyy'}}</td>
+        <tr *ngFor="let transaction of transactions, let even = even" [ngClass]="{'table-row-even':even,'table-row-odd':!even}" (click)="getTransactionInfo(transaction)">
+          <td>{{transaction.date.toDate() | date: 'dd/MM'}}</td>
           <td>{{transaction.typeOfSpending}}</td>
-          <td>{{transaction.posting}}</td>
+          <!-- <td>{{transaction.posting}}</td> -->
           <td>{{transaction.amount}}</td>
           <td>{{transaction.category}}</td>
-          <td>{{transaction.comment}}</td>
+          <!-- <td>{{transaction.comment}}</td> -->
         </tr>
       </tbody>
     </table>

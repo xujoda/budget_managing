@@ -7,6 +7,7 @@ import { TransactionCreatingDialogComponent } from '../transaction-creating-dial
 import { DeleteBudgetByNameDialogComponent } from '../delete-budget-by-name-dialog/delete-budget-by-name-dialog.component';
 import { sortedChanges } from '@angular/fire/compat/firestore';
 import { orderBy } from '@firebase/firestore';
+import { TransactionInfoDialogComponent } from '../transaction-info-dialog/transaction-info-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -68,4 +69,11 @@ export class DashboardComponent implements OnInit {
       this.transactions = transactions
     })
   }
+
+  getTransactionInfo(transaction: Transaction){
+    const dialogRef = this.dialog.open(TransactionInfoDialogComponent, {
+      data: { transaction: transaction }
+    });    
+  }
+
 }

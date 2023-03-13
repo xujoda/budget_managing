@@ -40,7 +40,8 @@ import {MatSelectModule} from '@angular/material/select'
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { TransactionInfoDialogComponent } from './components/transaction-info-dialog/transaction-info-dialog.component'
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MatToolbarModule } from '@angular/material/toolbar'
     NavigationComponent,
     BudgetCreatingDialogComponent,
     TransactionCreatingDialogComponent,
-    DeleteBudgetByNameDialogComponent
+    DeleteBudgetByNameDialogComponent,
+    TransactionInfoDialogComponent
     ],
   imports: [
     MatToolbarModule,

@@ -18,7 +18,7 @@ export class DailySpendingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBudget()
-    this.getTransactions()
+    this.getDailyTransactions()
   }
 
   getBudget(){
@@ -39,8 +39,8 @@ export class DailySpendingComponent implements OnInit {
     })
   } 
 
-  getTransactions(){
-    this.dataService.getTransactions().subscribe(transactions => {
+  getDailyTransactions(){
+    this.dataService.getDailyTransactions().subscribe(transactions => {
       this.transactions = transactions
     })
   }

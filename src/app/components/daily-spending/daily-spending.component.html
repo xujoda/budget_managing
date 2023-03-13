@@ -23,7 +23,7 @@
       
       <tbody>
         <tr *ngFor="let transaction of transactions, let even = even" [ngClass]="{'table-row-even':even,'table-row-odd':!even}">
-          <td>{{transaction.date.toDate() | date: 'dd/MM/yyyy'}}</td>
+          <td>{{transaction.date.toDate() | date: 'dd/MM'}}</td>
           <td>{{transaction.typeOfSpending}}</td>
           <td>{{transaction.posting}}</td>
           <td>{{transaction.amount}}</td>

@@ -79,8 +79,8 @@ export class DataService {
       });
     });
   }
-
-   // TODO: replace id to some name
+  
+  // TODO: replace id to something else for deleting
    deleteTransaction(id:string){
     const transactionDoc: AngularFirestoreDocument<Transaction> = this.firestore.doc('transactions/${id}')
     transactionDoc.delete()
@@ -91,6 +91,15 @@ export class DataService {
   }
 
    getTransactions(): Observable<Transaction[]>{
-    return this.firestore.collection<Transaction>('transactions', ref => ref.orderBy('date', 'desc')).valueChanges();
+    return this.firestore.collection<Transaction>('transactions', ref => ref
+    .orderBy('date', 'desc')
+    ).valueChanges();
+   }
+
+   getDailyTransactions(): Observable<Transaction[]>{
+    return this.firestore.collection<Transaction>('transactions', ref => ref
+    .where('typeOfSpending','==','Daily')
+    .orderBy('date','desc')
+    ).valueChanges();
    }
 }
