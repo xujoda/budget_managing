@@ -27,6 +27,9 @@
           <mat-icon>menu</mat-icon>
         </button>
         <span>{{pageTitle}}</span>
+        <button mat-icon-button class="right" (click)="toggleLanguage()"> 
+          <mat-icon>language</mat-icon>
+        </button>
         <button *ngIf="(fbAuth.user | async) === null" class="right" mat-raised-button routerLink="/login">
           <mat-icon>meeting_room</mat-icon>
           Login

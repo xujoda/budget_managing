@@ -18,6 +18,7 @@ interface PageData {
 export class NavigationComponent implements OnInit{
 
   isMenuOpen: boolean = false;
+  isRuLanguage: boolean = false;
   pageTitle: string = "";
 
   observer: Partial<Observer<PageData>> = {};
@@ -45,6 +46,10 @@ export class NavigationComponent implements OnInit{
 
   toggleMenu(){
     this.isMenuOpen = !this.isMenuOpen
+  }
+
+  toggleLanguage(){
+    this.isRuLanguage = !this.isRuLanguage
   }
 
   logout(): void{
