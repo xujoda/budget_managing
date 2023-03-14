@@ -5,8 +5,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs'
 import { Observer } from '@firebase/util';
 
-//TODO: icons for small screen instead of text
-
 interface PageData {
   title: string;
 }

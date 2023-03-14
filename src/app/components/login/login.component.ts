@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, AfterViewInit{
+export class LoginComponent implements  AfterViewInit{
 
   loginForm: FormGroup
   firebaseErrorMessage: string
@@ -30,9 +30,6 @@ export class LoginComponent implements OnInit, AfterViewInit{
         this.router.navigate(['/dashboard'])
       }
     })
-  }
-
-  ngOnInit(): void {
   }
 
   loginUser(){

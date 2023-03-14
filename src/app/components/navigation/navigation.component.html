@@ -27,11 +27,11 @@
           <mat-icon>menu</mat-icon>
         </button>
         <span>{{pageTitle}}</span>
-        <button *ngIf="!(fbAuth.user | async)" class="right" mat-raised-button routerLink="/login">
+        <button *ngIf="(fbAuth.user | async) === null" class="right" mat-raised-button routerLink="/login">
           <mat-icon>meeting_room</mat-icon>
           Login
         </button>
-        <button *ngIf="(fbAuth.user | async)" class="right" mat-raised-button style="background-color: #f50057;" (click)="logout()">
+        <button *ngIf="(fbAuth.user | async) !== null" class="right" mat-raised-button style="background-color: #f50057;" (click)="logout()">
           <mat-icon>no_meeting_room</mat-icon>
           Log out
         </button>

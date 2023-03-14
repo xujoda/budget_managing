@@ -31,10 +31,10 @@
       <mat-form-field>
         <mat-label>Date of Transaction</mat-label>
         <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="transaction.date" required>
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-hint>MM/DD/YYYY</mat-hint>  
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
 
       <mat-form-field>
         <mat-label>Comment</mat-label>
