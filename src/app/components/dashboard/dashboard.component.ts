@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
 
   getTransactionInfo(transaction: Transaction){
     const dialogRef = this.dialog.open(TransactionInfoDialogComponent, {
-      data: { transaction: transaction }
+      data: { budget: this.budget[0],transaction: transaction }
     });    
   }
 

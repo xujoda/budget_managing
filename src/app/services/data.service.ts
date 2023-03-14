@@ -8,7 +8,7 @@ import { Budget, Transaction } from './interfaces';
 })
 export class DataService {
 
-  budgetID:string = '6HzvENde9qnvoBNLnPzy'
+  budgetID:string = 'QDybuGcp83ghKCh0JOu2'
 
   private budgetsCollection: AngularFirestoreCollection<Budget>
   budgets: Observable<Budget[]>
@@ -59,6 +59,13 @@ export class DataService {
         }
       }
     this.updateBudget(budget)
+   }
+
+   updateBudgetByPostTransaction(budget:Budget, transaction:Transaction){
+    transaction.typeOfSpending = 'Daily'
+    budget.amount -= transaction.amount
+    this.updateBudget(budget)
+    this.updateBudgetByTransaction(budget,transaction)
    }
 
    updateBudget(budget: Budget){

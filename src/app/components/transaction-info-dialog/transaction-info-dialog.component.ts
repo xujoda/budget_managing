@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Transaction } from 'src/app/services/interfaces';
+import { DataService } from 'src/app/services/data.service';
+import { Budget, Transaction } from 'src/app/services/interfaces';
 
 @Component({
   selector: 'app-transaction-info-dialog',
@@ -18,12 +19,24 @@ export class TransactionInfoDialogComponent{
     date: Timestamp.fromDate(new Date()),
     comment: ''
   }
+
+  budget:Budget[] = []
+  newDate: Timestamp = Timestamp.fromDate(new Date())
   
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<TransactionInfoDialogComponent>) {
-      this.transaction = data.transaction;
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<TransactionInfoDialogComponent>,
+    private dataService: DataService) 
+    {
+      this.transaction = data.transaction
+      this.budget[0] = data.budget
     }
 
   onCancel(): void {
     this.dialogRef.close()
+  }
+
+  posting(){
+    this.transaction.date = this.newDate
+    this.dataService.updateBudgetByPostTransaction(this.budget[0],this.transaction)
   }
 }

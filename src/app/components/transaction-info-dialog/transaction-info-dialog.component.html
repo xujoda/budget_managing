@@ -7,6 +7,17 @@
   <p><strong>Category:</strong> {{transaction.category}}</p>
   <p><strong>Comment:</strong> {{transaction.comment}}</p>
 </div>
+
+<mat-form-field>
+  <mat-label>Date of Posting</mat-label>
+  <input matInput [matDatepicker]="picker" name="newDate" [(ngModel)]="newDate" required>
+  <mat-hint>MM/DD/YYYY</mat-hint>  
+  <mat-datepicker #picker></mat-datepicker>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+</mat-form-field>
+
+
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Close</button>
+  <button mat-button color="primary" (click)="posting()">Posting</button>
 </div>
