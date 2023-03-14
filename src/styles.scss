@@ -66,10 +66,8 @@ $secondary-palette: (
     )
 );
 
-
 html, body { 
     margin: 0 auto;
-    padding-left: 2ch;
     min-width: 375px;
     display: flex;
     justify-content: center;
@@ -81,10 +79,6 @@ body {
     font-size: 16px;
     background-color: mat.get-color-from-palette($primary-palette,100);
     color: mat.get-color-from-palette($primary-palette,contrast 100);
-}
-
-h1,h2,h3{
-    color: mat.get-color-from-palette($primary-palette,contrast 800);
 }
 
 .navBtns{
@@ -121,4 +115,24 @@ table{
     border-radius: 2ch;
     background-color: mat.get-color-from-palette($secondary-palette,900);
     color: mat.get-color-from-palette($secondary-palette,contrast 900);
+}
+
+.stats-container{
+    border-radius: 1ch;
+    border-style: groove;
+    background-color: mat.get-color-from-palette($primary-palette,200);
+    color: mat.get-color-from-palette($primary-palette,contrast 200);
+    padding: 1ch 1ch;
+}
+
+.stat-card h3
+{
+    display: flex;
+    align-items: center;
+}
+  
+.stat-card h3 mat-icon, table th mat-icon
+{
+    margin-right: 2px;
+    vertical-align: middle;
 }
