@@ -124,9 +124,20 @@ export class DataService {
     ).valueChanges();
    }
 
-   getTransactionsByDate(today:Date): Observable<Transaction[]>{
+   getDailyTransactionsByDate(today:Date): Observable<Transaction[]>{
     return this.firestore.collection<Transaction>('transactions', ref => ref
     .where('date','==',today)
+    .where('typeOfSpending','==','Daily')
+    .orderBy('date','desc')
+    ).valueChanges();
+   }
+
+   getMonthlyTransactionsByDate(month:Date): Observable<Transaction[]>{
+    const monthOfFilter = month.getMonth()
+    return this.firestore.collection<Transaction>('transactions', ref => ref
+    .where('date','==',monthOfFilter)
+    .where('typeOfSpending','==','Monthly')
+    .orderBy('date','desc')
     ).valueChanges();
    }
 }
