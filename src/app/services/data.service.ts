@@ -123,4 +123,10 @@ export class DataService {
     .orderBy('date','desc')
     ).valueChanges();
    }
+
+   getTransactionsByDate(today:Date): Observable<Transaction[]>{
+    return this.firestore.collection<Transaction>('transactions', ref => ref
+    .where('date','==',today)
+    ).valueChanges();
+   }
 }

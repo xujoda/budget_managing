@@ -14,6 +14,7 @@ export class DailySpendingComponent implements OnInit {
 
   budget: Budget[] = []
   transactions?: Transaction[] = []
+  dateOfFilter:Date = new Date()
 
   constructor(private dataService: DataService, private dialog: MatDialog) { }
 
@@ -50,6 +51,12 @@ export class DailySpendingComponent implements OnInit {
     const dialogRef = this.dialog.open(TransactionInfoDialogComponent, {
       data: { transaction: transaction }
     });    
+  }
+
+  getTransactionsByDate(){
+    this.dataService.getTransactionsByDate(this.dateOfFilter).subscribe(transactions =>{
+      this.transactions = transactions
+    })
   }
 
 }
