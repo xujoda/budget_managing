@@ -53,8 +53,8 @@ export class DailySpendingComponent implements OnInit {
     });    
   }
 
-  getTransactionsByDate(){
-    this.dataService.getTransactionsByDate(this.dateOfFilter).subscribe(transactions =>{
+  getDailyTransactionsByDate(){
+    this.dataService.getDailyTransactionsByDate(this.dateOfFilter).subscribe(transactions =>{
       this.transactions = transactions
     })
   }
