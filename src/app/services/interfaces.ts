@@ -8,7 +8,7 @@ import { Timestamp } from '@angular/fire/firestore'
  }
 
  export interface Transaction {
-    id?: string
+    budgetName: string
     amount: number
     category: string
     typeOfSpending: string // Daily / Monthly / Income

@@ -12,6 +12,7 @@ import { Budget, Transaction } from 'src/app/services/interfaces';
 export class TransactionInfoDialogComponent{
 
   transaction:Transaction = {
+    budgetName: 'main',
     amount: 0,
     category: '',
     typeOfSpending: '',
@@ -38,5 +39,10 @@ export class TransactionInfoDialogComponent{
   posting(){
     this.transaction.date = this.newDate
     this.dataService.updateBudgetByPostTransaction(this.budget[0],this.transaction)
+  }
+
+  deleteTransaction(){
+    this.dataService.deleteTransaction(this.transaction,this.budget[0])
+    this.onCancel()
   }
 }

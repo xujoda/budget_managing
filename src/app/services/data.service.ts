@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
+import { QuerySnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Budget, Transaction } from './interfaces';
 
@@ -8,7 +9,7 @@ import { Budget, Transaction } from './interfaces';
 })
 export class DataService {
 
-  budgetID:string = 'QDybuGcp83ghKCh0JOu2'
+  budgetID:string = 'mJlHmUsbRkmyp9pKxRWo'
 
   private budgetsCollection: AngularFirestoreCollection<Budget>
   budgets: Observable<Budget[]>
@@ -51,7 +52,9 @@ export class DataService {
         {
           transaction.posting = true
           transaction.typeOfSpending = 'Daily'
-          this.updateBudgetByTransaction(budget,transaction)
+          budget.amount -= 2*transaction.amount
+          budget.free -= transaction.amount
+          this.addTransaction(transaction)
         }
         else 
         {
@@ -63,34 +66,70 @@ export class DataService {
 
    updateBudgetByPostTransaction(budget:Budget, transaction:Transaction){
     transaction.typeOfSpending = 'Daily'
+    transaction.posting = true
     budget.amount -= transaction.amount
+    budget.free -= transaction.amount
     this.updateBudget(budget)
-    this.updateBudgetByTransaction(budget,transaction)
    }
 
    updateBudget(budget: Budget){
-    const budgetDoc: AngularFirestoreDocument<Budget> = this.firestore.doc(`budgets/${this.budgetID}`);
-    budgetDoc.update(budget)
-   }
+    const query = this.firestore.collection<Budget>('budgets', ref => ref.where('name', '==', budget.name))
+    query.get().subscribe(querySnapshot => {
+      querySnapshot.forEach(doc =>{
+        doc.ref.update(budget)
+      })
+    })
 
-   updateTransaction(transaction:Transaction){
-    const transactionDoc: AngularFirestoreDocument<Transaction> = this.firestore.doc(`transactions/${transaction.id}`)
-    transactionDoc.update(transaction)
    }
 
    deleteBudgetByName(name: string) {
-    const query = this.firestore.collection<Budget>('budgets', ref => ref.where('name', '==', name));
+    const query = this.firestore.collection<Budget>('budgets', ref => ref.where('name', '==', name))
     query.get().subscribe(querySnapshot => {
       querySnapshot.forEach(doc => {
-        doc.ref.delete();
-      });
-    });
+        doc.ref.delete()
+      })
+    })
+    this.deleteAllTransactionsByBudget(name)
+  }
+
+  deleteAllTransactionsByBudget(name:string){
+    const query = this.firestore.collection<Transaction>('transactions', ref => ref
+    .where('budgetName', '==',name)
+    )
+    query.get().subscribe(QuerySnapshot => {
+      QuerySnapshot.forEach(doc =>{
+        doc.ref.delete()
+      })
+    })
   }
   
-  // TODO: replace id to something else for deleting
-   deleteTransaction(id:string){
-    const transactionDoc: AngularFirestoreDocument<Transaction> = this.firestore.doc('transactions/${id}')
-    transactionDoc.delete()
+   deleteTransaction(transaction:Transaction, budget:Budget){
+    const query = this.firestore.collection<Transaction>('transactions', ref => ref
+    .where('budgetName', '==',transaction.budgetName)
+    .where('date', '==',transaction.date)
+    .where('category', '==',transaction.category)
+    .where('comment', '==',transaction.comment)
+    .where('amount', '==',transaction.amount)
+    .where('posting', '==',transaction.posting)
+    .where('typeOfSpending', '==',transaction.typeOfSpending)
+    )
+    query.get().subscribe(QuerySnapshot => {
+      QuerySnapshot.forEach(doc =>{
+        doc.ref.delete()
+      })
+    })
+    if (transaction.typeOfSpending === 'Income')
+    {
+        budget.amount -= transaction.amount
+        budget.free -= transaction.amount
+    }
+    else 
+    {
+        budget.amount += transaction.amount
+        if (transaction.typeOfSpending === 'Daily')
+          budget.free += transaction.amount
+    }
+    this.updateBudget(budget)
    }
 
    getBudget(): Observable<Budget[]> {    

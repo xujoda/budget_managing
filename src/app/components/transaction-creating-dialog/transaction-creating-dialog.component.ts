@@ -11,6 +11,7 @@ import { Timestamp } from '@angular/fire/firestore';
 export class TransactionCreatingDialogComponent {
 
   transaction:Transaction = {
+    budgetName: 'main',
     amount: 0,
     category: '',
     typeOfSpending: '',
