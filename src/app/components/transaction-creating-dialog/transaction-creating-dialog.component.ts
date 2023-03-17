@@ -1,17 +1,20 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Transaction } from 'src/app/services/interfaces';
+import { Budget, Transaction } from 'src/app/services/interfaces';
 import { Timestamp } from '@angular/fire/firestore';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-transaction-creating-dialog',
   templateUrl: './transaction-creating-dialog.component.html',
   styleUrls: ['./transaction-creating-dialog.component.scss']
 })
-export class TransactionCreatingDialogComponent {
+export class TransactionCreatingDialogComponent implements OnInit {
+
+  budget:Budget[] = []
 
   transaction:Transaction = {
-    budgetName: 'main',
+    budgetName: '',
     amount: 0,
     category: '',
     typeOfSpending: '',
@@ -23,7 +26,13 @@ export class TransactionCreatingDialogComponent {
   @Inject(MAT_DIALOG_DATA) public data: any
 
   constructor(
-    public dialogRef: MatDialogRef<TransactionCreatingDialogComponent>) { }
+    public dialogRef: MatDialogRef<TransactionCreatingDialogComponent>,
+    private dataService: DataService) { }
+
+    ngOnInit(): void {
+      this.dataService.getBudget().subscribe(budget => {
+        this.budget = budget})
+      }
 
   onCreate(): void {
     this.dialogRef.close(this.transaction)

@@ -22,14 +22,22 @@
     </button>
   </div>
   <br>
-  
-    <div class="stats-container" *ngIf="budget[0]">
+
+    <div class="stats-container" *ngIf="activeBudget">
+
+      <mat-form-field appearance="fill" color="primary">
+        <mat-label>Name of Budget</mat-label>
+        <mat-select name="name" [(ngModel)]="activeBudget" required>
+          <mat-option class="stat-value" *ngFor="let item of budget" [value]="item">{{item.name}}</mat-option>
+        </mat-select>    
+      </mat-form-field>
+
         <div class="stat-card">
             <h3>
               <mat-icon> local_atm</mat-icon>
               Budget is
             </h3>
-            <p class="stat-value">{{budget[0].amount}}</p>
+            <p class="stat-value">{{activeBudget.amount}}</p>
         </div>
           
         <div class="stat-card">
@@ -37,7 +45,7 @@
               <mat-icon>money</mat-icon>
               Free Balance
             </h3>
-            <p class="stat-value">{{budget[0].free}}</p>
+            <p class="stat-value">{{activeBudget.free}}</p>
         </div>
     </div>
 
@@ -66,12 +74,14 @@
       </thead>
       
       <tbody>
-        <tr *ngFor="let transaction of transactions, let even = even" [ngClass]="{'table-row-even':even,'table-row-odd':!even}" (click)="getTransactionInfo(transaction)">
+        <ng-container *ngFor="let transaction of transactions, let even = even">
+        <tr *ngIf="transaction.budgetName == activeBudget.name" [ngClass]="{'table-row-even':even,'table-row-odd':!even}" (click)="getTransactionInfo(transaction)">
           <td>{{transaction.date.toDate() | date: 'dd/MM'}}</td>
           <td>{{transaction.typeOfSpending}}</td>
           <td>{{transaction.amount}}</td>
           <td>{{transaction.category}}</td>
         </tr>
+      </ng-container>
       </tbody>
     </table>
   </div>

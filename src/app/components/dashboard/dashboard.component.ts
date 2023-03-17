@@ -15,13 +15,13 @@ import { TransactionInfoDialogComponent } from '../transaction-info-dialog/trans
 export class DashboardComponent implements OnInit {
 
   budget:Budget[] = []
+  activeBudget: Budget = {name:'main',amount:0,free:0}
   transactions?: Transaction[] = []
 
   constructor(private dataService: DataService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getBudget()
-    this.getAllTransactions()
   }
 
   openBudgetCreatingDialog(){
@@ -37,9 +37,9 @@ export class DashboardComponent implements OnInit {
   getBudget(){
     this.dataService.getBudget().subscribe(budget => {
       this.budget = budget
+      this.activeBudget = budget[budget.length-1]
+      this.getAllTransactions()
     })
-    
-    this.dataService.getAllTransactions().subscribe(transactions => this.transactions = transactions)
   }
 
   openBudgetDeleteByNameDialog(){
@@ -57,7 +57,8 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        this.dataService.updateBudgetByTransaction(this.budget[0],result)
+        //TODO: Change this.actiBudget -> selected budget
+        this.dataService.updateBudgetByTransaction(this.activeBudget,result)
       }
     })
   }  
@@ -70,7 +71,7 @@ export class DashboardComponent implements OnInit {
 
   getTransactionInfo(transaction: Transaction){
     const dialogRef = this.dialog.open(TransactionInfoDialogComponent, {
-      data: { budget: this.budget[0],transaction: transaction }
+      data: { budget: this.activeBudget,transaction: transaction }
     });    
   }
 

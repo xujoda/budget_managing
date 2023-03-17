@@ -21,7 +21,7 @@ export class TransactionInfoDialogComponent{
     comment: ''
   }
 
-  budget:Budget[] = []
+  budget:Budget ={name:'main',amount:0,free:0}
   newDate: Timestamp = Timestamp.fromDate(new Date())
   
   constructor(
@@ -29,7 +29,7 @@ export class TransactionInfoDialogComponent{
     private dataService: DataService) 
     {
       this.transaction = data.transaction
-      this.budget[0] = data.budget
+      this.budget = data.budget
     }
 
   onCancel(): void {
@@ -38,11 +38,11 @@ export class TransactionInfoDialogComponent{
 
   posting(){
     this.transaction.date = this.newDate
-    this.dataService.updateBudgetByPostTransaction(this.budget[0],this.transaction)
+    this.dataService.updateBudgetByPostTransaction(this.budget,this.transaction)
   }
 
   deleteTransaction(){
-    this.dataService.deleteTransaction(this.transaction,this.budget[0])
+    this.dataService.deleteTransaction(this.transaction,this.budget)
     this.onCancel()
   }
 }

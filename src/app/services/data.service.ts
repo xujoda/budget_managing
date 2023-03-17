@@ -9,8 +9,6 @@ import { Budget, Transaction } from './interfaces';
 })
 export class DataService {
 
-  budgetID:string = 'mJlHmUsbRkmyp9pKxRWo'
-
   private budgetsCollection: AngularFirestoreCollection<Budget>
   budgets: Observable<Budget[]>
   
@@ -19,9 +17,9 @@ export class DataService {
 
   constructor(private firestore: AngularFirestore) {
     this.budgetsCollection = this.firestore.collection<Budget>('budgets')
-    this.budgets = this.budgetsCollection.valueChanges({idField:'id'})
+    this.budgets = this.budgetsCollection.valueChanges()
     this.transactionsCollection = this.firestore.collection<Transaction>('transactions')
-    this.transactions = this.transactionsCollection.valueChanges({idField:'id'})
+    this.transactions = this.transactionsCollection.valueChanges()
    }
 
    addBudget (budget:Budget){
