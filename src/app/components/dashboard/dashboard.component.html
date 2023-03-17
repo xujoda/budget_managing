@@ -27,7 +27,7 @@
 
       <mat-form-field appearance="fill" color="primary">
         <mat-label>Name of Budget</mat-label>
-        <mat-select name="name" [(ngModel)]="activeBudget" required>
+        <mat-select matNativeControl name="name" [(ngModel)]="activeBudget" required>
           <mat-option class="stat-value" *ngFor="let item of budget" [value]="item">{{item.name}}</mat-option>
         </mat-select>    
       </mat-form-field>
@@ -52,7 +52,7 @@
     <br>
     <h2>Recent Transactions</h2>
     
-    <table>
+    <table *ngIf="activeBudget">
       <thead>
         <tr>
           <th>
@@ -75,7 +75,7 @@
       
       <tbody>
         <ng-container *ngFor="let transaction of transactions, let even = even">
-        <tr *ngIf="transaction.budgetName == activeBudget.name" [ngClass]="{'table-row-even':even,'table-row-odd':!even}" (click)="getTransactionInfo(transaction)">
+        <tr *ngIf="transaction.budgetName == activeBudget.name" [ngClass]="{'table-row-odd':even,'table-row-even':!even}" (click)="getTransactionInfo(transaction)">
           <td>{{transaction.date.toDate() | date: 'dd/MM'}}</td>
           <td>{{transaction.typeOfSpending}}</td>
           <td>{{transaction.amount}}</td>

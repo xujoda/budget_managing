@@ -4,39 +4,39 @@
 
     <mat-form-field appearance="fill" color="primary">
       <mat-label>Name of Budget</mat-label>
-      <mat-select matNativeControl name="budgetName" [(ngModel)]="transaction.budgetName" required>
-        <mat-option *ngFor="let item of budget" [value]="item.name">{{item.name}}</mat-option>
+      <mat-select matNativeControl name="selectedBudget" [(ngModel)]="selectedBudget" required>
+        <mat-option *ngFor="let item of budget" [value]="item">{{item.name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="fill" color="primary">
       <mat-label>Type of Transaction</mat-label>
-      <select matNativeControl name="typeOfSpending" [(ngModel)]="transaction.typeOfSpending" required>
-        <option value="Income">Income</option>
-        <option value="Daily">Daily</option>
-        <option value="Monthly">Monthly</option>
-      </select>
+      <mat-select matNativeControl name="typeOfSpending" [(ngModel)]="transaction.typeOfSpending" required>
+        <mat-option value="Income">Income</mat-option>
+        <mat-option value="Daily">Daily</mat-option>
+        <mat-option value="Monthly">Monthly</mat-option>
+      </mat-select>
     </mat-form-field>
 
-    <mat-form-field *ngIf="transaction.typeOfSpending === 'Monthly'">
+    <mat-form-field *ngIf="transaction.typeOfSpending === 'Monthly'" appearance="fill" color="primary">
       <mat-label>Post transaction</mat-label>
-      <select matNativeControl name="posting" [(ngModel)]="transaction.posting" required>
-        <option value="true">True</option>
-        <option value="false">False</option>
-      </select>
+      <mat-select matNativeControl name="posting" [(ngModel)]="transaction.posting" required>
+        <mat-option value="true">True</mat-option>
+        <mat-option value="false">False</mat-option>
+      </mat-select>
     </mat-form-field>
     
-    <mat-form-field>
+    <mat-form-field appearance="fill" color="primary">
         <mat-label>Category of Transaction</mat-label>
         <input matInput type="string" name="category" [(ngModel)]="transaction.category" required>
       </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="fill" color="primary">
         <mat-label>Transaction Amount</mat-label>
         <input matInput type="number" name="amount" [(ngModel)]="transaction.amount" required>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field appearance="fill" color="primary">
         <mat-label>Date of Transaction</mat-label>
         <input matInput [matDatepicker]="picker" name="date" [(ngModel)]="transaction.date" required>
         <mat-hint>DD/MM/YYYY</mat-hint>  
@@ -44,7 +44,7 @@
       </mat-form-field>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
 
-      <mat-form-field>
+      <mat-form-field appearance="fill" color="primary">
         <mat-label>Comment</mat-label>
         <input matInput type="string" name="comment" [(ngModel)]="transaction.comment" required>
       </mat-form-field>

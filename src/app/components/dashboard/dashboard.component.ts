@@ -57,8 +57,7 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        //TODO: Change this.actiBudget -> selected budget
-        this.dataService.updateBudgetByTransaction(this.activeBudget,result)
+        this.dataService.updateBudgetByTransaction(result.budget,result.transaction)
       }
     })
   }  
