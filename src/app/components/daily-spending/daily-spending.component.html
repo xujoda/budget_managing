@@ -25,27 +25,18 @@
     <table>
       <thead>
         <tr>
-          <th>
-            <mat-icon>calendar_today</mat-icon>
-          </th>
-          <th>
-            <mat-icon>date_range</mat-icon>
-            Monthly
-          </th>
-          <th>
-            <mat-icon>money</mat-icon>
-            Amount
-          </th>
-          <th>
-            <mat-icon>subject</mat-icon>
-            Caregory
-          </th>
+          <th><mat-icon>calendar_today</mat-icon> </th>
+          <th><mat-icon>local_atm</mat-icon>  </th>
+          <th><mat-icon>date_range</mat-icon>Monthly</th>
+          <th><mat-icon>money</mat-icon>Amount</th>
+          <th><mat-icon>subject</mat-icon>Caregory</th>
         </tr>
       </thead>
       
       <tbody>
         <tr *ngFor="let transaction of transactions, let even = even" [ngClass]="{'table-row-even':even,'table-row-odd':!even}" (click)="getTransactionInfo(transaction)">
           <td>{{transaction.date.toDate() | date: 'dd/MM'}}</td>
+          <td>{{transaction.budgetName}}</td>
           <td>{{transaction.posting}}</td>
           <td>{{transaction.amount}}</td>
           <td>{{transaction.category}}</td>

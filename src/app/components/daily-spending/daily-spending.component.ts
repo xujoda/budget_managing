@@ -36,7 +36,7 @@ export class DailySpendingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        this.dataService.updateBudgetByTransaction(this.budget[0],result)
+        this.dataService.updateBudgetByTransaction(result.budget,result.transaction)
       }
     })
   } 
