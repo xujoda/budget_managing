@@ -1,6 +1,14 @@
 <h2 mat-dialog-title>Create Transaction</h2>
 <mat-dialog-content>
   <form #TransactionForm="ngForm">
+
+    <mat-form-field>
+      <mat-label>Name of Budget</mat-label>
+      <select matNativeControl name="typeOfSpending" [(ngModel)]="transaction.budgetName" required>
+        <option value="main">main</option>
+      </select>
+    </mat-form-field>
+
     <mat-form-field>
       <mat-label>Type of Transaction</mat-label>
       <select matNativeControl name="typeOfSpending" [(ngModel)]="transaction.typeOfSpending" required>
