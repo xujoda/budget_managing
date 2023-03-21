@@ -12,7 +12,11 @@ import { DataService } from 'src/app/services/data.service';
 export class TransactionCreatingDialogComponent implements OnInit {
 
   budget:Budget[] = []
-  selectedBudget?: Budget
+  selectedBudget: Budget = {
+    name: '',
+    amount: 0,
+    free: 0
+  }
 
   transaction:Transaction = {
     budgetName: '',
@@ -36,6 +40,7 @@ export class TransactionCreatingDialogComponent implements OnInit {
       }
 
   onCreate(): void {
+    this.transaction.budgetName = this.selectedBudget.name
     const result = {budget: this.selectedBudget, transaction: this.transaction}
     this.dialogRef.close(result)
   }

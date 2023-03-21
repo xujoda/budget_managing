@@ -32,7 +32,7 @@ import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { BudgetCreatingDialogComponent } from './components/budget-creating-dialog/budget-creating-dialog.component'
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { TransactionCreatingDialogComponent } from './components/transaction-creating-dialog/transaction-creating-dialog.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DeleteBudgetByNameDialogComponent } from './components/delete-budget-by-name-dialog/delete-budget-by-name-dialog.component';
